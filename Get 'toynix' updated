@@ -1,0 +1,21 @@
+# api https://api.github.com/repos/henryZe/toynix
+# web_page  https://github.com/henryZe/toynix
+import requests
+import webbrowser
+import time
+
+api= 'https://api.github.com/repos/henryZe/toynix'
+web_page = 'https://github.com/henryZe/toynix'
+last_update = '2018-10-26T09:12:03Z'
+all_info = requests.get(api).json()
+cur_update = all_info['updated_at']
+#print(cur_update)
+
+#时间戳（时间的原始数据），（同格式的时间）可以进行加减乘除等运算
+while True:
+    if not last_update:
+        last_update = cur_update
+    if last_update < cur_update:
+        print('he has updated!')
+        webbrowser.open(web_page)
+    time.sleep(6000)
